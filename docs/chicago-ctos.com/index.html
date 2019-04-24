@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>CTOS</title>
+    <meta name="description" content="Building Smart Cities">
+    <meta name="keywords" content="CTOS, watch dogs, watchdogs">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.ubisoft.com/">
+    <meta property="og:title" content="CTOS: Building Smart Cities">
+    <meta property="og:site_name" content="Watch Dogs">
+    <meta property="og:description" content="CTOS: Building Smart Cities">
+    <meta property="og:url" content="index.html">
+    <script type="text/javascript" src="js/libs/modernizr.js"></script>
+    <link href="css/styles.min.css" rel="stylesheet" type="text/css">
+    <!-- http://static9.cdn.ubi.com/resource/en-US/game/watchdogs/watchdogs/image-0_96921.jpg -->
+</head>
+
+<body>
+    <header id="header" data-id="header" class="ib-component" data-component="ib.Header">
+        <h1 class="ctos-logo"><a href="https://www.ubisoft.com/" data-chapter-index="0">ctOS</a></h1>
+        <nav>
+            <ul>
+                <li><span></span><a class="bel" href="https://www.ubisoft.com/" data-chapter-index="0">Believe</a></li>
+                <li><span></span><a class="dis" href="https://www.ubisoft.com/" data-chapter-index="1">Discover</a></li>
+                <li><span></span><a class="ima" href="https://www.ubisoft.com/" data-chapter-index="2">Imagine</a></li>
+                <li><span></span><a class="con" href="https://www.ubisoft.com/" data-chapter-index="3">Connect</a></li>
+            </ul>
+        </nav>
+        <div class="story-progress-bar"></div>
+        <div class="audio-levels-bar ib-component" data-component="ib.AudioControls"></div>
+        <div class="blume-logo-wrapper">
+          <div class="blume-logo-mask">
+            <h1 class="blume-logo"></h1>
+          </div>
+          <figcaption><span>Blume</span></figcaption>
+          <a href="http://store.ubiworkshop.com/watch-dogs/characters-and-universes/blume/?utm_source=refferal&amp;utm_medium=chicago-ctos&amp;utm_term=blume-products&amp;utm_content=link&amp;utm_campaign=blume-products" target="_blank"><strong>Donate to<br>the Blume<br>cause</strong></a>
+        </div>
+    </header>
+
+    <div id="chapters">
+        <div class="shared-city-video-wrap">
+            <section id="chapter-1" data-id="chapter-1" class="ib-component chapter active-chapter" data-component="ib.Chapter">
+                <div class="mask">
+                    <div class="scroll-content force-full-size"></div>
+                </div>
+            </section>
+
+            <section id="chapter-2" data-id="chapter-2" class="ib-component chapter" data-component="ib.Chapter">
+                <div class="mask">
+                    <div class="scroll-content force-full-size"></div>
+                </div>
+            </section>
+            <div id="city-video">
+              <video preload="auto">
+                <source type="video/mp4" src="http://static2.ubi.com/ncsa/watchdogs/ctos/video/city.mp4">
+                <source type="video/webm" src="http://static2.ubi.com/ncsa/watchdogs/ctos/video/city.webm">
+                <object width="100%" height="100%" type="application/x-shockwave-flash" data="js/libs/flashmediaelement.swf">
+                  <param name="movie" value="/js/libs/flashmediaelement.swf" />
+                  <param name="flashvars" value="controls=false&file=/video/city.mp4" />
+                </object>
+              </video>
+            </div>
+        </div>
+
+        <div class="shared-network-graph-wrap">
+            <section id="chapter-3" data-id="chapter-3" class="ib-component chapter" data-component="ib.Chapter">
+                <div class="mask">
+                    <div class="scroll-content force-full-size"></div>
+                </div>
+            </section>
+
+            <section id="chapter-4" data-id="chapter-4" class="ib-component chapter" data-component="ib.Chapter">
+                <div class="mask">
+                    <div class="scroll-content force-full-size"></div>
+                </div>
+            </section>
+            <canvas class="shared-network-graph ib-component" data-component="ib.SharedNetworkGraph"></canvas>
+        </div>
+    </div>
+
+    <div id="preloader">
+        <div class="load-header">
+            <h1 class="ctos-logo">ctOS</h1>
+        </div>
+    </div>
+    <!-- http://static9.cdn.ubi.com/resource/en-CA/game/watchdogs/watchdogs/Jordi_Crop_100339.png -->
+    <!-- http://static9.cdn.ubi.com/resource/en-CA/game/watchdogs/watchdogs/image-1_96922.jpg -->
+
+    <!-- Scripts -->
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.10.2.min.js"><\/script>')</script>
+    <script type="text/javascript" src="js/libs/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript" src="js/libs/mediaelement-and-player.min.js"></script>
+    <script type="text/javascript" src="js/libs/vo-data.js"></script>
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1575735-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function () { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+
+		$(document).ready(function(){
+			setTimeout(function(){$('.content.blue-border').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_learnmore']); }),3000});
+			
+			$('.bel').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_believe']); });
+			$('.dis').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_discover']); });
+			$('.ima').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_imagine']); });
+			$('.con').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_connect']);
+
+			$('li.facebook a').click(function(e){ _gaq.push(['_trackEvent', 'social', 'facebook', 'ctos_share']); });
+			$('li.twitter a').click(function(e){ _gaq.push(['_trackEvent', 'social', 'twitter', 'ctos_share']); });
+			$('li.gplus a').click(function(e){ _gaq.push(['_trackEvent', 'social', 'gplus', 'ctos_share']); });
+
+			});			
+			
+			$('.blume-logo-wrapper').click(function(e){ _gaq.push(['_trackEvent', 'retailer', 'click_merch', 'ctos_ubiworkshop_blume-store']); });
+			$('h1.ctos-logo').click(function(e){ _gaq.push(['_trackEvent', 'links', 'click_navi', 'ctos_ctos']); });
+		});
+	</script>
+    <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script type="text/javascript">
+      
+        var MTUserId='68967f5c-6115-40e2-8443-d7ba0bc156ff';
+        var MTFontIds = new Array();
+        MTFontIds.push("692692");
+        MTFontIds.push("692704");
+        (function() {
+            var mtTracking = document.createElement('script');
+            mtTracking.type='text/javascript';
+            mtTracking.async='true';
+            mtTracking.src=('https:'==document.location.protocol?'https:':'http:')+'//fast.fonts.net/lt/trackingCode.js';
+            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking);
+        })();
+    </script>
+</body>
+</html>
+
+<!-- http://fc01.deviantart.net/fs70/f/2013/136/4/5/watch_dogs_logo_vector_by_darsephtan-d65fwzk.jpg -->
+<!--
+          _____
+         /\    \
+        /::\____\
+       /:::/    /
+      /:::/   _/___
+     /:::/   /\    \
+    /:::/   /::\____\
+   /:::/   /:::/    /
+  /:::/   /:::/   _/___
+ /:::/___/:::/   /\    \
+|:::|   /:::/   /::\____\
+|:::|__/:::/   /:::/    /
+ \:::\/:::/   /:::/    /
+  \::::::/   /:::/    /
+   \::::/___/:::/    /
+    \:::\__/:::/    /
+     \::::::::/    /
+      \::::::/    /
+       \::::/    /
+        \::/____/
+         ~~
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+   /::::\   \:::\    \
+  /::::::\   \:::\    \
+ /:::/\:::\   \:::\    \
+/:::/  \:::\   \:::\____\
+\::/    \:::\  /:::/    /
+ \/____/ \:::\/:::/    /
+          \::::::/    /
+           \::::/    /
+           /:::/    /
+          /:::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+           _____
+          /\    \
+         /::\    \
+         \:::\    \
+          \:::\    \
+           \:::\    \
+            \:::\    \
+            /::::\    \
+           /::::::\    \
+          /:::/\:::\    \
+         /:::/  \:::\____\
+        /:::/    \::/    /
+       /:::/    / \/____/
+      /:::/    /
+     /:::/    /
+     \::/    /
+      \/____/
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/  \:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/    /   \:::\    \
+/:::/____/     \:::\____\
+\:::\    \      \::/    /
+ \:::\    \      \/____/
+  \:::\    \
+   \:::\    \
+    \:::\    \
+     \:::\    \
+      \:::\    \
+       \:::\____\
+        \::/    /
+         \/____/
+          _____
+         /\    \
+        /::\____\
+       /:::/    /
+      /:::/    /
+     /:::/    /
+    /:::/____/
+   /::::\    \
+  /::::::\    \   _____
+ /:::/\:::\    \ /\    \
+/:::/  \:::\    /::\____\
+\::/    \:::\  /:::/    /
+ \/____/ \:::\/:::/    /
+          \::::::/    /
+           \::::/    /
+           /:::/    /
+          /:::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+
+
+
+
+
+
+
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/  \:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/    /   \:::\ ___\
+/:::/____/     \:::|    |
+\:::\    \     /:::|____|
+ \:::\    \   /:::/    /
+  \:::\    \ /:::/    /
+   \:::\    /:::/    /
+    \:::\  /:::/    /
+     \:::\/:::/    /
+      \::::::/    /
+       \::::/    /
+        \::/____/
+         ~~
+       _______
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /::::::::\    \
+    /:::/~~\:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/____/   \:::\____\
+|:::|    |     |:::|    |
+|:::|____|     |:::|    |
+ \:::\    \   /:::/    /
+  \:::\    \ /:::/    /
+   \:::\    /:::/    /
+    \:::\__/:::/    /
+     \::::::::/    /
+      \::::::/    /
+       \::::/    /
+        \::/____/
+         ~~
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/  \:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/    /   \:::\ ___\
+/:::/____/  ___\:::|    |
+\:::\    \ /\  /:::|____|
+ \:::\    /::\ \::/    /
+  \:::\   \:::\ \/____/
+   \:::\   \:::\____\
+    \:::\  /:::/    /
+     \:::\/:::/    /
+      \::::::/    /
+       \::::/    /
+        \::/____/
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+    \:::\   \:::\    \
+  ___\:::\   \:::\    \
+ /\   \:::\   \:::\    \
+/::\   \:::\   \:::\____\
+\:::\   \:::\   \::/    /
+ \:::\   \:::\   \/____/
+  \:::\   \:::\    \
+   \:::\   \:::\____\
+    \:::\  /:::/    /
+     \:::\/:::/    /
+      \::::::/    /
+       \::::/    /
+        \::/    /
+         \/____/
+
+
+
+
+
+
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+   /::::\   \:::\    \
+  /::::::\   \:::\    \
+ /:::/\:::\   \:::\    \
+/:::/  \:::\   \:::\____\
+\::/    \:::\  /:::/    /
+ \/____/ \:::\/:::/    /
+          \::::::/    /
+           \::::/    /
+           /:::/    /
+          /:::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+   /::::\   \:::\    \
+  /::::::\   \:::\    \
+ /:::/\:::\   \:::\____\
+/:::/  \:::\   \:::|    |
+\::/   |::::\  /:::|____|
+ \/____|:::::\/:::/    /
+       |:::::::::/    /
+       |::|\::::/    /
+       |::| \::/____/
+       |::|  ~|
+       |::|   |
+       \::|   |
+        \:|   |
+         \|___|
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+   /::::\   \:::\    \
+  /::::::\   \:::\    \
+ /:::/\:::\   \:::\    \
+/:::/__\:::\   \:::\____\
+\:::\   \:::\   \::/    /
+ \:::\   \:::\   \/____/
+  \:::\   \:::\    \
+   \:::\   \:::\____\
+    \:::\   \::/    /
+     \:::\   \/____/
+      \:::\    \
+       \:::\____\
+        \::/    /
+         \/____/
+
+
+
+
+
+
+
+
+          _____
+         /\    \
+        /::\____\
+       /:::/    /
+      /:::/   _/___
+     /:::/   /\    \
+    /:::/   /::\____\
+   /:::/   /:::/    /
+  /:::/   /:::/   _/___
+ /:::/___/:::/   /\    \
+|:::|   /:::/   /::\____\
+|:::|__/:::/   /:::/    /
+ \:::\/:::/   /:::/    /
+  \::::::/   /:::/    /
+   \::::/___/:::/    /
+    \:::\__/:::/    /
+     \::::::::/    /
+      \::::::/    /
+       \::::/    /
+        \::/____/
+         ~~
+
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/__\:::\    \
+   /::::\   \:::\    \
+  /::::::\   \:::\    \
+ /:::/\:::\   \:::\    \
+/:::/  \:::\   \:::\____\
+\::/    \:::\  /:::/    /
+ \/____/ \:::\/:::/    /
+          \::::::/    /
+           \::::/    /
+           /:::/    /
+          /:::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+          _____
+         /\    \
+        /::\    \
+        \:::\    \
+         \:::\    \
+          \:::\    \
+           \:::\    \
+           /::::\    \
+          /::::::\    \
+         /:::/\:::\    \
+        /:::/  \:::\____\
+       /:::/    \::/    /
+      /:::/    / \/____/
+     /:::/    /
+    /:::/    /
+    \::/    /
+     \/____/
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/  \:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/    /   \:::\    \
+/:::/____/     \:::\____\
+\:::\    \      \::/    /
+ \:::\    \      \/____/
+  \:::\    \
+   \:::\    \
+    \:::\    \
+     \:::\    \
+      \:::\    \
+       \:::\____\
+        \::/    /
+         \_____/
+         /\    \
+        /::\____\
+       /:::/    /
+      /:::/    /
+     /:::/    /
+    /:::/____/
+   /::::\    \
+  /::::::\    \   _____
+ /:::/\:::\    \ /\    \
+/:::/  \:::\    /::\____\
+\::/    \:::\  /:::/    /
+ \/____/ \:::\/:::/    /
+          \::::::/    /
+           \::::/    /
+           /:::/    /
+          /:::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+         /\    \
+        /::\    \
+        \:::\    \
+         \:::\    \
+          \:::\    \
+           \:::\    \
+           /::::\    \
+  ____    /::::::\    \
+ /\   \  /:::/\:::\    \
+/::\   \/:::/  \:::\____\
+\:::\  /:::/    \::/    /
+ \:::\/:::/    / \/____/
+  \::::::/    /
+   \::::/____/
+    \:::\    \
+     \:::\    \
+      \:::\    \
+       \:::\____\
+        \::/    /
+         \/____/
+          _____
+         /\    \
+        /::\____\
+       /::::|   |
+      /:::::|   |
+     /::::::|   |
+    /:::/|::|   |
+   /:::/ |::|   |
+  /:::/  |::|   | _____
+ /:::/   |::|   |/\    \
+/:: /    |::|   /::\____\
+\::/    /|::|  /:::/    /
+ \/____/ |::| /:::/    /
+         |::|/:::/    /
+         |::::::/    /
+         |:::::/    /
+         |::::/    /
+         /:::/    /
+        /:::/    /
+        \::/    /
+         \/____/
+          _____
+         /\    \
+        /::\    \
+       /::::\    \
+      /::::::\    \
+     /:::/\:::\    \
+    /:::/  \:::\    \
+   /:::/    \:::\    \
+  /:::/    / \:::\    \
+ /:::/    /   \:::\ ___\
+/:::/____/  ___\:::|    |
+\:::\    \ /\  /:::|____|
+ \:::\    /::\ \::/    /
+  \:::\   \:::\ \/____/
+   \:::\   \:::\____\
+    \:::\  /:::/    /
+     \:::\/:::/    /
+      \::::::/    /
+       \::::/    /
+        \::/    /
+         \/____/
+-->
